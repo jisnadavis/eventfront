@@ -1,0 +1,41 @@
+:root {
+  /* Colors */
+  --primary-light: #faf9f6;
+  --primary-dark: #242424;
+
+  /* Spacings */
+  --spacing-xl: 50px;
+  --spacing-lg: 30px;
+  --spacing-md: 20px;
+  --spacing-sm: 10px;
+  --spacing-xs: 5px;
+
+  /* Border Radius */
+  --radius-sm: 5px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: black;
+  font-family: 'Dancing Script';
+}
+a {
+  text-decoration: none;
+}
+body {
+  /*width: 100svw;*/
+  background-color: black;
+  overflow-x: hidden;
+}
+#app {
+  position: relative;
+  top: 270px;
+  padding: 0px;
+  left: 0px;
+  width: 100%;
+}

@@ -1,0 +1,25 @@
+#updateForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  width: 100svw;
+}
+#updateForm button {
+  width: 130px;
+  height: 60px;
+  font-size: 40px;
+  border-radius: 30px;
+}
+@media (max-width: 784px) {
+  #updateForm {
+    position: relative;
+    top: 100px;
+  }
+}
+@media (max-width: 688px) {
+  #updateForm {
+    position: relative;
+    top: 200px;
+  }
+}

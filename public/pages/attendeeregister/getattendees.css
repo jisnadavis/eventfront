@@ -1,0 +1,35 @@
+.errordiv {
+  width: 100svw;
+  position: relative;
+  top: 10px;
+  font-size: 40px;
+}
+.errordiv ul {
+  width: 100svw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+
+  gap: 20px;
+  padding: 30px;
+}
+.errordiv li {
+  padding: 30px;
+  color: beige;
+  font-size: 30px;
+  width: 400px;
+  min-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.errordiv li:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(206, 32, 32, 0.2);
+}
+@media (max-width: 660px) {
+  .errordiv {
+    top: 150px;
+  }
+}

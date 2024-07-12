@@ -1,0 +1,45 @@
+header {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: var(--spacing-md);
+  background-color: black;
+}
+.logo {
+  width: 200px;
+  height: 150px;
+  border-radius: 50px;
+}
+
+.ulcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 60svw;
+
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  min-width: 350px;
+}
+a {
+  color: bisque;
+}
+li {
+  font-size: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+  transform: scale(1.1); /* Make the li element 10% larger */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.active {
+  color: red;
+  text-decoration: none;
+}
