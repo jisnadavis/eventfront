@@ -27,12 +27,12 @@
 }
 @keyframes backgroundchange {
   from {
-    background-image: url('public/assets/celebrate.png');
+    background-image: url('/assets/celebrate.png');
     background-repeat: no-repeat;
     background-size: contain;
   }
   50% {
-    background-image: url('public/assets/pexels-cottonbro-3171837.jpg');
+    background-image: url('/assets/pexels-cottonbro-3171837.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 30px;
