@@ -40,7 +40,10 @@ const Login = async (form, messageContainer) => {
       'Content-Type': 'application/json'
     }
   }
-  const res = await fetch('http://localhost:3000/api/v1/users/login', opciones)
+  const res = await fetch(
+    'https://eventbackend-two.vercel.app/api/v1/users/login',
+    opciones
+  )
 
   messageContainer.innerHTML = ''
   console.log('Response status:', res.status)
