@@ -15,7 +15,7 @@ select {
   font-size: 20px;
   color: beige;
 }
-#userForm label {
+#userFormm label {
   color: beige;
 }
 #role {
@@ -25,20 +25,21 @@ select {
   border-radius: 30px;
   position: relative;
 }
-#userForm button {
+#userFormm button {
   position: relative;
   width: 130px;
   height: 50px;
   font-size: 40px;
   border-radius: 30px;
 }
-#userForm div {
+#userFormm div {
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 100svw;
   align-items: center;
   align-content: center;
+  position: relative;
 }
 .updatediv option {
   width: 200px;
@@ -48,9 +49,34 @@ label {
 }
 .errormessage {
   position: relative;
-  color: red;
+  color: rgb(98, 0, 255);
   font-size: 50px;
   top: 100px;
   text-align: center;
   padding-bottom: 90px;
+}
+@media (max-width: 750px) {
+  .updatediv {
+    top: 100px;
+  }
+  #userFormm div {
+    top: 150px;
+  }
+  .errormessage {
+    top: 150px;
+  }
+}
+@media (max-width: 640px) {
+  .updatediv {
+    top: 220px;
+  }
+  .updatediv select {
+    width: 320px;
+  }
+  #userFormm div {
+    top: 190px;
+  }
+  .errormessage {
+    top: 200px;
+  }
 }

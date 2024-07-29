@@ -24,10 +24,10 @@ p {
 @media (max-width: 664px) {
   .deleteevent {
     position: relative;
-    top: 100px;
+    top: 150px;
   }
   .errorp {
     position: relative;
-    top: 150px;
+    top: 200px;
   }
 }

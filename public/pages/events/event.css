@@ -64,7 +64,7 @@ p {
 
 .par_event:hover .description {
   opacity: 1;
-  pointer-events: auto; /* Allow interaction with description when visible */
+  pointer-events: auto;
 }
 @media (max-width: 893px) {
   .eventdiv {
@@ -79,5 +79,14 @@ p {
 @media (max-width: 637px) {
   .eventdiv {
     top: 300px;
+  }
+  .description {
+    height: 500px;
+  }
+  .description p {
+    font-size: 15px;
+  }
+  .join {
+    z-index: 2;
   }
 }

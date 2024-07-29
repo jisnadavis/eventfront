@@ -40,7 +40,6 @@
 #eventForm input {
   width: 420px;
   height: 60px;
-  min-width: 300px;
 }
 
 label {
@@ -58,5 +57,9 @@ label {
   #eventForm {
     top: 250px;
     position: relative;
+  }
+
+  #eventForm input {
+    width: 260px;
   }
 }

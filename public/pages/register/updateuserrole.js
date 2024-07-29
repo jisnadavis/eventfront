@@ -53,7 +53,7 @@ const populateuser = async (eventid, username) => {
   console.log('enterd into the populateuser')
   const populatediv = document.createElement('div')
   populatediv.innerHTML = `
-    <form id="userForm">
+    <form id="userFormm">
       <div>
         <!-- Username input field -->
         <label for="username">Username:</label>
@@ -78,7 +78,7 @@ const populateuser = async (eventid, username) => {
   const errormessage = document.createElement('p')
   errormessage.className = 'errormessage'
 
-  const userForm = populatediv.querySelector('#userForm')
+  const userForm = populatediv.querySelector('#userFormm')
   userForm.addEventListener('submit', async (e) => {
     e.preventDefault()
     const formData = new FormData(userForm)
@@ -112,9 +112,6 @@ const submitUserForm = async (formData, eventid) => {
       errormessage.textContent =
         'you successfully change the role of the selected user'
     }
-    //const data = await res.json()
-    //console.log('Form submission response:', data)
-    // Handle response as needed
   } catch (error) {
     console.error('Error submitting form:', error.message)
   }

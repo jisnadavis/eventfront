@@ -56,7 +56,6 @@ option {
   width: 100vw;
   justify-content: center;
   position: relative;
-
   padding: 40px;
   flex-wrap: wrap;
   align-items: center;
@@ -100,9 +99,21 @@ label {
     top: 100px;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   #eventlist {
     position: relative;
     top: 200px;
+  }
+  #eventForm input {
+    width: 260px;
+  }
+  #eventForm select {
+    width: 260px;
+  }
+  #eventForm textarea {
+    width: 260px;
+  }
+  .inform {
+    width: 300px;
   }
 }

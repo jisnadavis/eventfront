@@ -51,3 +51,11 @@ label {
   font-size: 30px;
   border-radius: 30px;
 }
+@media (max-width: 700px) {
+  #registerForm {
+    top: 100px;
+  }
+  #messageContainer {
+    top: 80px;
+  }
+}
