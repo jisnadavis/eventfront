@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import './deleteevnt.css'
 
 export const deleteEvent = () => {
@@ -9,8 +10,8 @@ export const deleteEvent = () => {
 
   const eventsTodelete = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/v1/events/')
-      const events = await res.json()
+      const res = await fetchurl('/api/v1/events/')
+      const events = res.resdata
 
       const listevent = document.createElement('div')
       listevent.id = 'listevent'
@@ -58,10 +59,7 @@ export const deleteEvent = () => {
           Authorization: `Bearer ${token}`
         }
       }
-      const res = await fetch(
-        `http://localhost:3000/api/v1/events/${eventid}`,
-        options
-      )
+      const res = await fetchurl(`/api/v1/events/${eventid}`, options)
       const errormessage = document.createElement('p')
       errormessage.className = 'errorp'
       if (res.status === 403) {

@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import './delete.css'
 export const deleteAttendees = () => {
   const divapp = document.querySelector('#app')
@@ -22,8 +23,8 @@ export const deleteAttendees = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/v1/attende/`, options)
-      const confirmedattendee = await res.json()
+      const res = await fetchurl(`/api/v1/attende/`, options)
+      const confirmedattendee = res.resdata
 
       if (confirmedattendee.length === 0) {
         alert('Nobody registered for the event')
@@ -40,7 +41,7 @@ export const deleteAttendees = () => {
         const deletebutton = document.createElement('button')
         deletebutton.textContent = 'Delete'
         deletebutton.onclick = async () => {
-          await deleteCustomer(customer._id) // Use `_id` here
+          await deleteCustomer(customer._id)
           deleteattendeediv.innerHTML = ''
           fetchattendee()
         }
@@ -69,14 +70,11 @@ export const deleteAttendees = () => {
 
     try {
       console.log(`Attempting to delete attendee with ID: ${id}`)
-      const res = await fetch(
-        `http://localhost:3000/api/v1/attende/${id}`, // Use `_id` in the URL
-        options
-      )
+      const res = await fetchurl(`/api/v1/attende/${id}`, options)
       if (res.status === 200) {
         alert('Attendee deleted successfully')
       } else if (res.status === 403) {
-        const errorData = await res.json()
+        const errorData = res.resdata
         console.error('Unauthorized access:', errorData)
         alert(
           'Unauthorized: You do not have permission to delete this attendee'
@@ -86,7 +84,7 @@ export const deleteAttendees = () => {
         console.error('Attendee not found:', errorData)
         alert('Attendee not found')
       } else {
-        const errorData = await res.json()
+        const errorData = res.resdata
         console.error('Error deleting attendee:', errorData)
         alert(`Error deleting attendee: ${errorData.message || res.statusText}`)
       }

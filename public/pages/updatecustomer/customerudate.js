@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import './customer.css'
 
 export const updatecustomer = (eventid) => {
@@ -46,11 +47,8 @@ const update = async (form, messageContainer) => {
     }
   }
 
-  const res = await fetch(
-    `http://localhost:3000/api/v1/attende/${data.phoneNumber}`, // Pass phone number in the URL
-    opciones
-  )
-  const refinal = await res.json()
+  const res = await fetchurl(`/api/v1/attende/${data.phoneNumber}`, opciones)
+  const refinal = res.resdata
   console.log(refinal.name)
 
   messageContainer.innerHTML = ''

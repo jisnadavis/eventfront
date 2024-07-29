@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import './getattendees.css'
 export const getAttendees = () => {
   const divapp = document.querySelector('#app')
@@ -16,7 +17,7 @@ export const getAttendees = () => {
       }
     }
 
-    const res = await fetch(`http://localhost:3000/api/v1/attende/`, options)
+    const res = await fetchurl(`/api/v1/attende/`, options)
     element.innerHTML = ''
     const errorDiv = document.createElement('div')
     errorDiv.className = 'errordiv'
@@ -29,7 +30,7 @@ export const getAttendees = () => {
       return // Exit the function if unauthorized
     }
 
-    const confirmedattendee = await res.json()
+    const confirmedattendee = await res.resdata
     errorDiv.innerHTML = ''
     if (confirmedattendee.length == 0) {
       alert('there is nobody registerd for the event')

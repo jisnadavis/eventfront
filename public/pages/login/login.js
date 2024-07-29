@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import { createbutton } from '../../components/button/button'
 import { createheader } from '../../components/header/header'
 import { adminpage } from '../admin/admin'
@@ -40,16 +41,13 @@ const Login = async (form, messageContainer) => {
       'Content-Type': 'application/json'
     }
   }
-  const res = await fetch(
-    'https://eventbackend-two.vercel.app/api/v1/users/login',
-    opciones
-  )
+  const res = await fetchurl('/api/v1/users/login', opciones)
 
   messageContainer.innerHTML = ''
   console.log('Response status:', res.status)
 
   if (res.status === 400) {
-    const errorData = await res.json()
+    const errorData = res.resdata
     console.error('Error data:', errorData)
     const pError = document.createElement('p')
     pError.classList.add('error')
@@ -58,7 +56,7 @@ const Login = async (form, messageContainer) => {
     messageContainer.appendChild(pError)
     return
   }
-  const respuestaFinal = await res.json()
+  const respuestaFinal = res.resdata
   console.log('Response data:', respuestaFinal)
   localStorage.setItem('token', respuestaFinal.token)
   localStorage.setItem('user', JSON.stringify(respuestaFinal.user))

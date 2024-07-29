@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import './register.css'
 export const createregister = () => {
   const divapp = document.querySelector('#app')
@@ -60,13 +61,13 @@ const register = async (form, messageContainer) => {
     }
   }
 
-  const res = await fetch('http://localhost:3000/api/v1/users/', opciones)
+  const res = await fetchurl('/api/v1/users/', opciones)
 
   messageContainer.innerHTML = ''
   console.log('Response status:', res.status)
 
   if (res.status === 400) {
-    const errorData = await res.json()
+    const errorData = res
     console.error('Error data:', errorData)
     const pError = document.createElement('p')
     pError.classList.add('error')
@@ -85,7 +86,7 @@ const register = async (form, messageContainer) => {
     return
   }
 
-  const respuestaFinal = await res.json()
+  const respuestaFinal = res.resdata
   console.log('Response data:', respuestaFinal)
   const messageP = document.createElement('p')
   messageP.className = 'messageCustomer'

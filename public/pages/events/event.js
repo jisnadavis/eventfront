@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import { registerCustomer } from '../attendeeregister/attendee'
 import './event.css'
 
@@ -5,8 +6,8 @@ export const createevent = async () => {
   const divApp = document.querySelector('#app')
   divApp.innerHTML = '' // Clear any existing content
 
-  const res = await fetch('http://localhost:3000/api/v1/events/')
-  const events = await res.json()
+  const res = await fetchurl('/api/v1/events/')
+  const events = res.resdata
 
   printEvents(events, divApp)
 }

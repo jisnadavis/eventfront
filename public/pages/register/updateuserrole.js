@@ -1,5 +1,6 @@
 import './updateuser.css'
 import { fetchUser } from '../events/updateevent'
+import fetchurl from '../../../fetchurluser'
 
 export const updateUserRole = async () => {
   const token = localStorage.getItem('token')
@@ -103,10 +104,7 @@ const submitUserForm = async (formData, eventid) => {
   }
   const errormessage = document.querySelector('.errormessage')
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/v1/users/${eventid}`,
-      options
-    )
+    const res = await fetchurl(`/api/v1/users/${eventid}`, options)
     if (res.status == 400) {
       errormessage.textContent = 'invalid role '
     }

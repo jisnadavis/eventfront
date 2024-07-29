@@ -1,6 +1,6 @@
+import fetchurl from '../../../fetchurluser'
 import './updateevent.css'
 
-// Function to fetch and display events
 export const updateEvent = () => {
   const token = localStorage.getItem('token')
   const divapp = document.querySelector('#app')
@@ -16,8 +16,8 @@ export const updateEvent = () => {
 // Function to fetch events from the server
 export const fetchEvents = async (parent) => {
   try {
-    const res = await fetch('http://localhost:3000/api/v1/events/')
-    const events = await res.json()
+    const res = await fetchurl('/api/v1/events/')
+    const events = res.resdata
 
     const listevent = document.createElement('div')
     listevent.id = 'listevent'
@@ -45,14 +45,14 @@ export const fetchEvents = async (parent) => {
 export const selectEvent = async (eventId, event) => {
   const token = localStorage.getItem('token')
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/events/${eventId}`, {
+    const res = await fetchurl(`/api/v1/events/${eventId}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
-    const eventDetails = await res.json()
+    const eventDetails = res.resdata
     console.log(eventDetails)
     populateForm(event)
   } catch (error) {
@@ -60,9 +60,6 @@ export const selectEvent = async (eventId, event) => {
   }
 }
 
-// Utility function to validate MongoDB ObjectId format
-
-// Function to fetch user details
 export const fetchUser = async () => {
   try {
     const token = localStorage.getItem('token')
@@ -70,7 +67,7 @@ export const fetchUser = async () => {
       throw new Error('No logged-in user found')
     }
 
-    const res = await fetch('http://localhost:3000/api/v1/users/', {
+    const res = await fetchurl('/api/v1/users/', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -78,11 +75,11 @@ export const fetchUser = async () => {
       }
     })
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch user: ${res.statusText}`)
+    if (res.status !== 200) {
+      throw new Error(`Failed to fetch user: ${res.status}`)
     }
 
-    const userData = await res.json()
+    const userData = res.resdata
     return userData.map((user) => ({
       name: user.name,
       id: user._id
@@ -282,7 +279,6 @@ const updateEventDetails = async (eventId, eventDetails) => {
     return // Exit function early
   }
 
-  // Log the form data entries for debugging
   for (let pair of formData.entries()) {
     console.log(`${pair[0]}: ${pair[1]}`)
   }
@@ -302,33 +298,31 @@ const updateEventDetails = async (eventId, eventDetails) => {
   }
 
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/v1/events/${eventId}`,
-      options
-    )
+    const res = await fetchurl(`/api/v1/events/${eventId}`, options)
 
     const messageContainer = document.querySelector('#messageevent')
     messageContainer.innerHTML = ''
+    console.log('Response:', res)
+    if (res.status !== 200) {
+      console.log('Response status:', res.status)
+      console.log('Response headers:', res.headers)
 
-    if (!res.ok) {
-      if (res.headers.get('content-type').includes('application/json')) {
-        const errorData = await res.json()
-        console.log('Error data:', errorData)
+      const errorData = res.resdata
+      console.log('Error data:', errorData)
 
-        if (res.status === 400) {
-          const pError = document.createElement('p')
-          pError.classList.add('error')
-          pError.textContent =
-            'Bad request. Please check your data. Unable to update the event.'
-          pError.style.color = 'red'
-          messageContainer.appendChild(pError)
-        } else if (res.status === 401 || res.status === 403) {
-          const pError = document.createElement('p')
-          pError.classList.add('error')
-          pError.textContent = 'You are not authorized to perform this action.'
-          pError.style.color = 'red'
-          messageContainer.appendChild(pError)
-        }
+      if (res.status === 400) {
+        const pError = document.createElement('p')
+        pError.classList.add('error')
+        pError.textContent =
+          'Bad request. Please check your data. Unable to update the event.'
+        pError.style.color = 'red'
+        messageContainer.appendChild(pError)
+      } else if (res.status === 401 || res.status === 403) {
+        const pError = document.createElement('p')
+        pError.classList.add('error')
+        pError.textContent = 'You are not authorized to perform this action.'
+        pError.style.color = 'red'
+        messageContainer.appendChild(pError)
       } else {
         const pError = document.createElement('p')
         pError.classList.add('error')
@@ -339,7 +333,7 @@ const updateEventDetails = async (eventId, eventDetails) => {
       return
     }
 
-    const finalResponse = await res.json()
+    const finalResponse = res.resdata
     console.log('Final response:', finalResponse)
     const messageP = document.createElement('p')
     messageP.className = 'messageCustomer'
@@ -354,5 +348,3 @@ const isValidObjectId = (id) => {
   const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$')
   return checkForHexRegExp.test(id)
 }
-
-// Functiconst updateEventDetails = async (eventId) => {

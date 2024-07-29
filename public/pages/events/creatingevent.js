@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import './createevent.css'
 
 export const createEvent = () => {
@@ -7,29 +8,20 @@ export const createEvent = () => {
   const eventCreateDiv = document.createElement('div')
   eventCreateDiv.innerHTML = `
     <form id="eventForm">
-       <label for="title">Title:</label>
-  <input type="text" id="title" name="title" required placeholder="Enter event title">
-
-  <label for="date">Date:</label>
-  <input type="date" id="date" name="date" required placeholder="yyyy-mm-dd">
-
-  <label for="location">Location:</label>
-  <input type="text" id="location" name="location" required placeholder="Enter event location">
-
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" required placeholder="Enter event description"></textarea>
-
-  <label for="eventimg">Event Images:</label>
-  <input type="file" id="eventimg" name="eventimg" multiple required placeholder="Upload event images">
-
-     
-
-
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required placeholder="Enter event title">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required placeholder="yyyy-mm-dd">
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required placeholder="Enter event location">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required placeholder="Enter event description"></textarea>
+      <label for="eventimg">Event Images:</label>
+      <input type="file" id="eventimg" name="eventimg" multiple required placeholder="Upload event images">
       <label for="eventorganizer">Event Organizer:</label>
-      <input type="text" id="eventorganizer" name="eventorganizer"  class="hidden-input" readonly value="${
+      <input type="text" id="eventorganizer" name="eventorganizer" class="hidden-input" readonly value="${
         JSON.parse(localStorage.getItem('user')).id
       }">
-
       <button type="submit" id="submitEventButton">Submit</button>
     </form>
     <div id="messageevent"></div>
@@ -66,30 +58,29 @@ const creatingEvent = async (form, messageContainer) => {
     method: 'POST',
     body: formData,
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }
-    // Removing headers for proper FormData submission
   }
 
   try {
-    const res = await fetch('http://localhost:3000/api/v1/events/', opciones)
+    const res = await fetchurl('/api/v1/events/createevent', opciones)
 
     messageContainer.innerHTML = ''
     console.log('Response status:', res.status)
 
-    if (res.status === 400) {
-      const errorData = await res.json()
+    if (res.status !== 200 && res.status !== 201) {
+      const errorData = res.textData
       console.error('Error data:', errorData)
       const pError = document.createElement('p')
       pError.classList.add('error')
-      pError.textContent =
-        'Bad request. Please check your data. Unable to create the event'
+      pError.textContent = `Error: ${res.status}. ${errorData}`
       pError.style.color = 'red'
       messageContainer.appendChild(pError)
       return
     }
 
-    const respuestaFinal = await res.json()
+    const respuestaFinal = res.resdata
     console.log('Response data:', respuestaFinal)
     const messageP = document.createElement('p')
     messageP.className = 'messageCustomer'

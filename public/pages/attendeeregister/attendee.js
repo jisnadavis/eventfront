@@ -1,3 +1,4 @@
+import fetchurl from '../../../fetchurluser'
 import { createbutton } from '../../components/button/button'
 import { updatecustomer } from '../updatecustomer/customerudate'
 import './attendee.css'
@@ -50,7 +51,7 @@ const submit = async (form, eventid) => {
     }
   }
 
-  const res = await fetch('http://localhost:3000/api/v1/attende/', opciones)
+  const res = await fetchurl('/api/v1/attende/', opciones)
   const messageContainer = document.querySelector('#messageContainer')
 
   messageContainer.innerHTML = ''
@@ -74,7 +75,7 @@ const submit = async (form, eventid) => {
     return
   }
 
-  const respuestaFinal = await res.json()
+  const respuestaFinal = res.resdata
 
   const messageP = document.createElement('p')
   messageP.className = 'messageCustomer'
