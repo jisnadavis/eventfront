@@ -69,7 +69,7 @@ const creatingEvent = async (form, messageContainer) => {
     console.log('Response status:', res.status)
 
     if (res.status !== 200 && res.status !== 201) {
-      const errorData = res.textData
+      const errorData = res.resdata
       console.error('Error data:', errorData)
       const pError = document.createElement('p')
       pError.classList.add('error')
