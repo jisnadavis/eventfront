@@ -58,7 +58,6 @@ const creatingEvent = async (form, messageContainer) => {
     method: 'POST',
     body: formData,
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }
   }
