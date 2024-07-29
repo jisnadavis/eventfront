@@ -25,6 +25,13 @@
   font-size: 30px;
   border-radius: 30px;
 }
+.deleteattende ul {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 500px;
+  gap: 20px;
+}
 .deleteattende li {
   color: beige;
   text-align: center;

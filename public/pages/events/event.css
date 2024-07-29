@@ -87,6 +87,7 @@ p {
     font-size: 15px;
   }
   .join {
-    z-index: 2;
+    height: 40px;
+    font-size: 20px;
   }
 }
