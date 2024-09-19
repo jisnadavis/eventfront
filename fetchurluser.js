@@ -1,5 +1,5 @@
 const Base_url = 'https://eventbackend-nu.vercel.app'
-const fetchurl = async (endpoint, options = {}) => {
+const fetchurl = async (endpoint, options) => {
   const url = `${Base_url}${endpoint}`
   try {
     const response = await fetch(url, options)
@@ -9,7 +9,6 @@ const fetchurl = async (endpoint, options = {}) => {
     if (contentType && contentType.includes('application/json')) {
       resdata = await response.json()
     } else {
-      // Log the response text for debugging
       const textData = await response.text()
       console.warn('Non-JSON response:', textData)
       resdata = textData

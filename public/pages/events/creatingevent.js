@@ -54,7 +54,7 @@ const creatingEvent = async (form, messageContainer) => {
   const user = JSON.parse(localStorage.getItem('user')).id
   formData.set('eventorganizer', user)
 
-  const opciones = {
+  const options = {
     method: 'POST',
     body: formData,
     headers: {
@@ -63,30 +63,51 @@ const creatingEvent = async (form, messageContainer) => {
   }
 
   try {
-    const res = await fetchurl('/api/v1/events/createevent', opciones)
+    const res = await fetch(
+      'https://eventbackend-zcqb.vercel.app/api/v1/events/createevent',
+      options
+    )
 
-    messageContainer.innerHTML = ''
+    while (messageContainer.firstChild) {
+      messageContainer.removeChild(messageContainer.firstChild)
+    }
+
     console.log('Response status:', res.status)
 
-    if (res.status !== 200 && res.status !== 201) {
-      const errorData = res.resdata
+    const responseText = await res.text() // Read response as text
+    console.log('Response text:', responseText) // Log full response
+
+    if (!res.ok) {
+      let errorData = { message: 'Unknown error' }
+
+      try {
+        errorData = JSON.parse(responseText)
+      } catch (jsonError) {
+        console.error('Error parsing JSON:', jsonError)
+      }
+
       console.error('Error data:', errorData)
+
       const pError = document.createElement('p')
       pError.classList.add('error')
-      pError.textContent = `Error: ${res.status}. ${errorData}`
+      pError.textContent = `Error: ${res.status}. ${
+        errorData.message || 'An unknown error occurred.'
+      }`
       pError.style.color = 'red'
       messageContainer.appendChild(pError)
       return
     }
 
-    const respuestaFinal = res.resdata
-    console.log('Response data:', respuestaFinal)
+    const responseData = JSON.parse(responseText)
+    console.log('Response data:', responseData)
+
     const messageP = document.createElement('p')
     messageP.className = 'messageCustomer'
-    messageP.textContent = `You have successfully created the event: ${respuestaFinal.title}`
+    messageP.textContent = `You have successfully created the event: ${responseData.title}`
     messageContainer.appendChild(messageP)
   } catch (error) {
     console.error('Error:', error)
+
     const pError = document.createElement('p')
     pError.classList.add('error')
     pError.textContent = 'An error occurred while creating the event.'
