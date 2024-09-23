@@ -3,6 +3,7 @@ import { deleteAttendees } from '../attendeeregister/deleteattendee'
 import { getAttendees } from '../attendeeregister/getattendees'
 import { createEvent } from '../events/creatingevent'
 import { deleteEvent } from '../events/deleteevent'
+
 import { updateEvent } from '../events/updateevent'
 import { updateUserRole } from '../register/updateuserrole'
 

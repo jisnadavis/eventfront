@@ -1,4 +1,3 @@
-import fetchurl from '../../../fetchurluser'
 import './createevent.css'
 
 export const createEvent = () => {

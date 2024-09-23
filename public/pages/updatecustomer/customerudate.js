@@ -1,4 +1,4 @@
-import fetchurl from '../../../fetchurluser'
+import fetchurl from '../fetchurluser'
 import './customer.css'
 
 export const updatecustomer = (eventid) => {

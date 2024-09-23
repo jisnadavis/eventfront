@@ -1,7 +1,7 @@
-import fetchurl from '../../../fetchurluser'
 import { createbutton } from '../../components/button/button'
 import { createheader } from '../../components/header/header'
 import { adminpage } from '../admin/admin'
+import fetchurl from '../fetchurluser'
 import './login.css'
 
 export const createlogin = () => {

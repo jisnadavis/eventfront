@@ -1,4 +1,4 @@
-import fetchurl from 'c:/Users/hp/Documents/GitHub/eventfront/fetchurluser'
+import fetchurl from '../fetchurluser'
 import './deleteevnt.css'
 
 export const deleteEvent = () => {

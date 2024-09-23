@@ -1,6 +1,6 @@
 import './updateuser.css'
 import { fetchUser } from '../events/updateevent'
-import fetchurl from '../../../fetchurluser'
+import fetchurl from '../fetchurluser'
 
 export const updateUserRole = async () => {
   const token = localStorage.getItem('token')

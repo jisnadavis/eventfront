@@ -1,4 +1,4 @@
-import fetchurl from '../../../fetchurluser'
+import fetchurl from '../fetchurluser'
 import './register.css'
 export const createregister = () => {
   const divapp = document.querySelector('#app')

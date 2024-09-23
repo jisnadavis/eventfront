@@ -1,5 +1,5 @@
-import fetchurl from '../../../fetchurluser'
 import { createbutton } from '../../components/button/button'
+import fetchurl from '../fetchurluser'
 import { updatecustomer } from '../updatecustomer/customerudate'
 import './attendee.css'
 

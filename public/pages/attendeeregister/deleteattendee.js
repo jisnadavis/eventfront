@@ -1,4 +1,4 @@
-import fetchurl from '../../../fetchurluser'
+import fetchurl from '../fetchurluser'
 import './delete.css'
 export const deleteAttendees = () => {
   const divapp = document.querySelector('#app')

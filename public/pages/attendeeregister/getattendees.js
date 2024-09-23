@@ -1,4 +1,4 @@
-import fetchurl from '../../../fetchurluser'
+import fetchurl from '../fetchurluser'
 import './getattendees.css'
 export const getAttendees = () => {
   const divapp = document.querySelector('#app')
