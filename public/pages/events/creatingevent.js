@@ -1,3 +1,4 @@
+import fetchurl from '../fetchurluser'
 import './createevent.css'
 
 export const createEvent = () => {
@@ -62,44 +63,39 @@ const creatingEvent = async (form, messageContainer) => {
   }
 
   try {
-    const res = await fetch(
-      'https://eventbackend-zcqb.vercel.app/api/v1/events/createevent',
-      options
-    )
+    const res = await fetchurl('/api/v1/events/createevent', options)
 
+    // Clear previous messages
     while (messageContainer.firstChild) {
       messageContainer.removeChild(messageContainer.firstChild)
     }
 
     console.log('Response status:', res.status)
 
-    const responseText = await res.text() // Read response as text
-    console.log('Response text:', responseText) // Log full response
+    // Since fetchurl returns {status, resdata}, we access resdata
+    const responseData = res.resdata
+    console.log('Response data:', responseData)
 
-    if (!res.ok) {
-      let errorData = { message: 'Unknown error' }
+    // Handle error if the status is not in the 2xx range
+    if (res.status < 200 || res.status >= 300) {
+      let errorMessage = 'An unknown error occurred.'
 
-      try {
-        errorData = JSON.parse(responseText)
-      } catch (jsonError) {
-        console.error('Error parsing JSON:', jsonError)
+      // If it's an error response, handle accordingly
+      if (typeof responseData === 'string') {
+        errorMessage = responseData
+      } else if (responseData && responseData.message) {
+        errorMessage = responseData.message
       }
-
-      console.error('Error data:', errorData)
 
       const pError = document.createElement('p')
       pError.classList.add('error')
-      pError.textContent = `Error: ${res.status}. ${
-        errorData.message || 'An unknown error occurred.'
-      }`
+      pError.textContent = `Error: ${res.status}. ${errorMessage}`
       pError.style.color = 'red'
       messageContainer.appendChild(pError)
       return
     }
 
-    const responseData = JSON.parse(responseText)
-    console.log('Response data:', responseData)
-
+    // Success: display a success message
     const messageP = document.createElement('p')
     messageP.className = 'messageCustomer'
     messageP.textContent = `You have successfully created the event: ${responseData.title}`
