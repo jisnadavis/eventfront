@@ -16,8 +16,9 @@ export const createEvent = () => {
       <input type="text" id="location" name="location" required placeholder="Enter event location">
       <label for="description">Description:</label>
       <textarea id="description" name="description" required placeholder="Enter event description"></textarea>
-      <label for="eventimg">Event Images:</label>
+       <label for="eventimg">Event Images:</label>
       <input type="file" id="eventimg" name="eventimg" multiple required placeholder="Upload event images">
+
       <label for="eventorganizer">Event Organizer:</label>
       <input type="text" id="eventorganizer" name="eventorganizer" class="hidden-input" readonly value="${
         JSON.parse(localStorage.getItem('user')).id
