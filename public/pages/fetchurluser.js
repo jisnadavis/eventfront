@@ -1,4 +1,4 @@
-const Base_url = 'https://eventbackend-zcqb.vercel.app'
+const Base_url = 'https://eventbackend-ii6q.vercel.app'
 const fetchurl = async (endpoint, options) => {
   const url = `${Base_url}${endpoint}`
   try {

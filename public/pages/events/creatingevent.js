@@ -52,7 +52,7 @@ export const createEvent = () => {
 const creatingEvent = async (form, messageContainer) => {
   const formData = new FormData(form)
   const token = localStorage.getItem('token')
-  const user = JSON.parse(localStorage.getItem('user')).id
+  const user = JSON.parse(localStorage.getItem('user'))._id
   formData.set('eventorganizer', user)
 
   const options = {
