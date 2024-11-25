@@ -5,12 +5,39 @@ import './event.css'
 export const createevent = async () => {
   const divApp = document.querySelector('#app')
   divApp.innerHTML = ''
+  const loadingDiv = document.createElement('div')
+  loadingDiv.className = 'loading-container'
 
-  const res = await fetchurl('/api/v1/events/')
-  const events = res.resdata
+  const loadimg = document.createElement('img')
+  loadimg.src = './assets/loading.gif'
+  loadimg.alt = 'Loading...'
+  loadingDiv.appendChild(loadimg)
 
-  printEvents(events, divApp)
+  divApp.appendChild(loadingDiv)
+  try {
+    // Fetch events data
+    const res = await fetchurl('/api/v1/events/')
+    const events = res.resdata
+
+    divApp.removeChild(loadingDiv)
+
+    printEvents(events, divApp)
+  } catch (error) {
+    console.error('Error fetching events:', error)
+
+    // Remove loading indicator and show an error message
+    divApp.removeChild(loadingDiv)
+    const errorMessage = document.createElement('p')
+    errorMessage.textContent = 'Failed to load events. Please try again later.'
+    divApp.appendChild(errorMessage)
+  }
 }
+
+// const res = await fetchurl('/api/v1/events/')
+// const events = res.resdata
+// divApp.removeChild(loadingDiv);
+
+// printEvents(events, divApp)
 
 const printEvents = (events, elementPadre) => {
   const eventDiv = document.createElement('div')

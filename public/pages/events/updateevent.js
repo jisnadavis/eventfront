@@ -9,10 +9,8 @@ export const updateEvent = () => {
   eventlistdiv.id = 'eventlist'
   eventlistdiv.innerHTML = 'Loading the events...'
   fetchEvents(eventlistdiv)
-
   divapp.append(eventlistdiv)
 }
-
 // Function to fetch events from the server
 export const fetchEvents = async (parent) => {
   try {
@@ -146,7 +144,6 @@ const populateForm = async (event) => {
     locationLabel.setAttribute('for', 'location')
     locationLabel.textContent = 'Location:'
     form.appendChild(locationLabel)
-
     const locationInput = document.createElement('input')
     locationInput.type = 'text'
     locationInput.id = 'location'

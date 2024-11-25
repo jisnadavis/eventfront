@@ -3,10 +3,19 @@ import './register.css'
 export const createregister = () => {
   const divapp = document.querySelector('#app')
   divapp.innerHTML = ''
-
-  const registerdiv = document.createElement('div')
-  registerdiv.className = 'registerdiv'
-  registerdiv.innerHTML = `
+  const loadingDiv = document.createElement('div')
+  loadingDiv.className = 'loading-container'
+  const loadimg = document.createElement('img')
+  loadimg.src = './assets/loading.gif'
+  loadimg.alt = 'Loading...'
+  loadingDiv.appendChild(loadimg)
+  // Append the spinner to the app
+  divapp.appendChild(loadingDiv)
+  setTimeout(() => {
+    divapp.removeChild(loadingDiv)
+    const registerdiv = document.createElement('div')
+    registerdiv.className = 'registerdiv'
+    registerdiv.innerHTML = `
     <form id="registerForm">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -25,17 +34,29 @@ export const createregister = () => {
     <div id="messageContainer"></div>
   `
 
-  divapp.appendChild(registerdiv)
+    divapp.appendChild(registerdiv)
 
-  const form = document.querySelector('#registerForm')
-  const messageContainer = document.querySelector('#messageContainer')
+    const form = document.querySelector('#registerForm')
+    const messageContainer = document.querySelector('#messageContainer')
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault()
-    await register(form, messageContainer)
-  })
+    form.addEventListener('submit', async (event) => {
+      divapp.removeChild(registerdiv)
+      const loadingDiv = document.createElement('div')
+      loadingDiv.className = 'loading-container'
+      const loadimg = document.createElement('img')
+      loadimg.src = './assets/loading.gif'
+      loadimg.alt = 'Loading...'
+      loadingDiv.appendChild(loadimg)
+      divapp.appendChild(loadingDiv)
+      event.preventDefault()
+      setTimeout(async () => {
+        divapp.removeChild(loadingDiv)
+        divapp.append(messageContainer)
+        await register(form, messageContainer)
+      }, 2000)
+    })
+  }, 2000)
 }
-
 const register = async (form, messageContainer) => {
   const formData = new FormData(form)
   const data = Object.fromEntries(formData.entries())

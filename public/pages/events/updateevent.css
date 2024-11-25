@@ -10,7 +10,7 @@
   align-items: center;
 }
 #listevent {
-  padding: 30px;
+  padding-top: 30px;
   width: 500px;
   color: beige;
 }
@@ -102,7 +102,7 @@ label {
 @media (max-width: 640px) {
   #eventlist {
     position: relative;
-    top: 250px;
+    top: 50px;
   }
   #eventForm input {
     width: 260px;

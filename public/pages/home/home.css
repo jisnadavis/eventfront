@@ -41,7 +41,7 @@
 @media (max-width: 900px) {
   .home {
     position: absolute;
-    top: 150px;
+    top: 10px;
   }
   .tittle {
     font-size: 50px;
@@ -50,7 +50,7 @@
 @media (max-width: 645px) {
   .home {
     position: absolute;
-    top: 200px;
+    top: 0px;
   }
   .tittle {
     font-size: 50px;

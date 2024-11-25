@@ -57,26 +57,26 @@ label {
 }
 @media (max-width: 750px) {
   .updatediv {
-    top: 100px;
+    top: 10px;
   }
   #userFormm div {
-    top: 150px;
+    top: 10px;
   }
   .errormessage {
-    top: 150px;
+    top: 10px;
   }
 }
 @media (max-width: 640px) {
   .updatediv {
-    top: 220px;
+    top: 20px;
   }
   .updatediv select {
     width: 320px;
   }
   #userFormm div {
-    top: 190px;
+    top: 10px;
   }
   .errormessage {
-    top: 200px;
+    top: 20px;
   }
 }

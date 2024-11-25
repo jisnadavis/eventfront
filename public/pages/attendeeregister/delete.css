@@ -39,12 +39,12 @@
 }
 @media (max-width: 724px) {
   .deleteattende {
-    top: 150px;
+    top: 10px;
   }
 }
 @media (max-width: 554px) {
   .deleteattende {
-    top: 200px;
+    top: 20px;
   }
   .deleteattende div {
     width: 300px;

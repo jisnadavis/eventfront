@@ -77,11 +77,9 @@ const creatingEvent = async (form, messageContainer) => {
     const responseData = res.resdata
     console.log('Response data:', responseData)
 
-    // Handle error if the status is not in the 2xx range
     if (res.status < 200 || res.status >= 300) {
       let errorMessage = 'An unknown error occurred.'
 
-      // If it's an error response, handle accordingly
       if (typeof responseData === 'string') {
         errorMessage = responseData
       } else if (responseData && responseData.message) {
@@ -101,6 +99,7 @@ const creatingEvent = async (form, messageContainer) => {
     messageP.className = 'messageCustomer'
     messageP.textContent = `You have successfully created the event: ${responseData.title}`
     messageContainer.appendChild(messageP)
+    alert(`you are successfully created the event:${responseData.title}`)
   } catch (error) {
     console.error('Error:', error)
 

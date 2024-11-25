@@ -14,12 +14,12 @@
 @media (max-width: 784px) {
   #updateForm {
     position: relative;
-    top: 100px;
+    top: 10px;
   }
 }
 @media (max-width: 688px) {
   #updateForm {
     position: relative;
-    top: 200px;
+    top: 20px;
   }
 }

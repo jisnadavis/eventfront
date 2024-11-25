@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 100svw;
+  position: relative;
+  top: -30px;
   justify-content: center;
   position: relative;
   gap: 30px;
   align-content: center;
   flex-wrap: wrap;
-  padding: 30px;
+  padding: 10px;
 }
 
 input {
@@ -45,6 +47,17 @@ label {
   gap: 30px;
   padding-bottom: 20px;
 }
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 40px;
+}
+
+.loading-container img {
+  width: 500px;
+  height: 300px;
+}
 #messageContainer button {
   width: 130px;
   height: 40px;
@@ -53,7 +66,7 @@ label {
 }
 @media (max-width: 700px) {
   #registerForm {
-    top: 100px;
+    top: 0px;
   }
   #messageContainer {
     top: 80px;

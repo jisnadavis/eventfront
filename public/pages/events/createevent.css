@@ -55,11 +55,19 @@ label {
 }
 @media (max-width: 640px) {
   #eventForm {
-    top: 250px;
+    top: 20px;
     position: relative;
   }
 
   #eventForm input {
     width: 260px;
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

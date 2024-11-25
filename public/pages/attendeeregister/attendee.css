@@ -40,11 +40,11 @@
 }
 @media (max-width: 784px) {
   .registerdiv {
-    top: 100px;
+    top: 10px;
   }
 }
 @media (max-width: 644px) {
   .registerdiv {
-    top: 250px;
+    top: 20px;
   }
 }

@@ -7,6 +7,17 @@
   padding: var(--spacing-xl);
   position: relative;
 }
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 40px;
+}
+
+.loading-container img {
+  width: 500px;
+  height: 300px;
+}
 
 .par_event {
   position: relative;
@@ -68,17 +79,17 @@ p {
 }
 @media (max-width: 893px) {
   .eventdiv {
-    top: 100px;
+    top: 10px;
   }
 }
 @media (max-width: 709px) {
   .eventdiv {
-    top: 200px;
+    top: 20px;
   }
 }
 @media (max-width: 637px) {
   .eventdiv {
-    top: 300px;
+    top: 30px;
   }
   .description {
     height: 500px;

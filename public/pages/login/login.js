@@ -7,26 +7,46 @@ import './login.css'
 export const createlogin = () => {
   const divapp = document.querySelector('#app')
   divapp.innerHTML = ''
-  const logindiv = document.createElement('div')
-  logindiv.className = 'logindiv'
-  logindiv.innerHTML = `
-  <form id="loginForm">
-   <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required>
-       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
-       <button type="submit" id="userlogin">Login</button>
-    </form>
-    <div id="messageLogin"></div>`
+  const loadingDiv = document.createElement('div')
+  loadingDiv.className = 'loading-container'
+  const loadimg = document.createElement('img')
+  loadimg.src = './assets/loading.gif'
+  loadimg.alt = 'Loading...'
+  loadingDiv.appendChild(loadimg)
+  // Append the spinner to the app
+  divapp.appendChild(loadingDiv)
+  setTimeout(() => {
+    divapp.removeChild(loadingDiv)
+    const logindiv = document.createElement('div')
+    logindiv.className = 'logindiv'
+    logindiv.innerHTML = `
+    <form id="loginForm">
+     <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+         <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+         <button type="submit" id="userlogin">Login</button>
+      </form>
+      <div id="messageLogin"></div>`
 
-  divapp.appendChild(logindiv)
-  const form = document.querySelector('#loginForm')
-  const messageContainer = document.querySelector('#messageLogin')
+    divapp.appendChild(logindiv)
+    const form = document.querySelector('#loginForm')
+    const messageContainer = document.querySelector('#messageLogin')
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault()
-    await Login(form, messageContainer)
-  })
+    form.addEventListener('submit', async (event) => {
+      divapp.removeChild(logindiv)
+      const loadingDiv = document.createElement('div')
+      loadingDiv.className = 'loading-container'
+      const loadimg = document.createElement('img')
+      loadimg.src = './assets/loading.gif'
+      loadimg.alt = 'Loading...'
+      loadingDiv.appendChild(loadimg)
+      divapp.appendChild(loadingDiv)
+      divapp.appendChild(messageContainer)
+      event.preventDefault()
+      await Login(form, messageContainer)
+    })
+  }, 2000)
 }
 const Login = async (form, messageContainer) => {
   const formData = new FormData(form)
